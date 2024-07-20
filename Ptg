@@ -1,0 +1,27 @@
+from manim import *
+
+class PythagoreanTheorem(Scene):
+    def construct(self):
+        title = Text("Pythagorean Theorem").to_edge(UP)
+        self.play(Write(title))
+
+        triangle = Polygon(
+            np.array([0, 0, 0]),
+            np.array([3, 0, 0]),
+            np.array([3, 4, 0]),
+            color=WHITE
+        )
+        self.play(Create(triangle))
+
+        labels = [
+            MathTex("a").next_to(triangle.get_vertices()[1], DOWN),
+            MathTex("b").next_to(triangle.get_vertices()[2], RIGHT),
+            MathTex("c").next_to(triangle.get_vertices()[0], UL)
+        ]
+        for label in labels:
+            self.play(Write(label))
+
+        equation = MathTex("a^2 + b^2 = c^2").to_edge(DOWN)
+        self.play(Write(equation))
+
+        self.wait(2)
